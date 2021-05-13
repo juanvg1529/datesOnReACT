@@ -10,12 +10,22 @@ export default function App() {
     </div>
   );
 }
+
+//manejo de dates
 function Fecha() {
   let [valorActual, SetValorActual] = useState(""); //aqui inicializo el input como un string vacio
+  let [tiempoUnix, setTiempoUnix] = useState(0); //para actualizar el estado
   const handleClick = (event) => {
-    SetValorActual(event.target.value); //va a tomar lo que entra en el input como un evento
-    console.log("El valor del input es: ");
-    console.log(event.target.value); // me va a mostrar como se van concatenando lo que entra en el input
+    SetValorActual(event.target.value); //
+    //hay que pasar esa fecha a tiempo unix
+    //iniciliazar una nueva vairbele con el event.target.value
+    const dateString = new Date(event.target.value);
+    // const tiempoUnix=dateString.getTime();//asi lo paso al tienpo unix
+    const tiempoUnix = new Date(event.target.value).getTime(); //esto es lo mismo de arriba
+    const fechaYear = dateString.getFullYear();
+    setTiempoUnix(tiempoUnix); //para actualizar el estado
+    console.log("El valor del tiempo unix es es: ");
+    console.log(tiempoUnix); // muestto el tiempo unix
   };
   return (
     <div>
@@ -23,6 +33,7 @@ function Fecha() {
     </div>
   );
 }
+//manejo de inputs
 function Input() {
   let [valorActual, SetValorActual] = useState(""); //aqui inicializo el input como un string vacio
   const handleClick = (event) => {
